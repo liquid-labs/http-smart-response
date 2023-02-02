@@ -4,7 +4,12 @@
   "description": "",
   "main": "dist/http-smart-response.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "make",
+    "lint": "make lint",
+    "lint:fix": "make lint-fix",
+    "test": "make test",
+    "preversion": "npm test && make lint",
+    "postversion": "git push upstream v${npm_package_version}"
   },
   "keywords": [],
   "author": "Zane Rockenbaugh <zane@liquid-labs.com>",
@@ -13,5 +18,10 @@
   "bugs": {
     "url": "https://github.com/liquid-labs/http-smart-response/issues"
   },
-  "homepage": "https://github.com/liquid-labs/http-smart-response#readme"
+  "homepage": "https://github.com/liquid-labs/http-smart-response#readme",
+  "devDependencies": {
+    "@liquid-labs/catalyst-scripts": "^1.0.0-alpha.57",
+    "http-errors": "^2.0.0",
+    "js-yaml": "^4.1.0"
+  }
 }
