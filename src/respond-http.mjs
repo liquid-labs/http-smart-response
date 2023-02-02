@@ -1,4 +1,3 @@
-import createError from 'http-errors'
 import { highlightYAML } from './highlight-yaml'
 import yaml from 'js-yaml'
 
@@ -10,9 +9,9 @@ const allFormats = [
   'text/plain'
 ]
 
-const dataFormats = [ 'application/json', 'application/yaml', 'application/x-yaml' ]
+const dataFormats = ['application/json', 'application/yaml', 'application/x-yaml']
 
-const nonDataFormats = [ 'text/terminal', 'text/plain' ]
+const nonDataFormats = ['text/terminal', 'text/plain']
 
 const respondHTTP = ({ data, msg, req, res, sendUndefined = false }) => {
   const format = req.accepts(allFormats)

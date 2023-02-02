@@ -11,7 +11,7 @@ const highlightYAML = (yaml) => {
     }
     if (!inBlock) {
       line = line.replace(/^(\s*)([^:]+):/, '$1<h2>$2<rst>:')
-      line = line.replace(/([:-]\s*)(\d+\.?\d*|true|false|null|undefined)/i,'$1<code>$2<rst>')
+      line = line.replace(/([:-]\s*)(\d+\.?\d*|true|false|null|undefined)/i, '$1<code>$2<rst>')
     }
     if (line.match(/\|-$/)) {
       line = line.replace(/(\|-)$/, '<em>$1<rst>')

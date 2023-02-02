@@ -2,7 +2,6 @@
 
 import { highlightYAML } from '../highlight-yaml'
 
-
 const yamlPlain = `foo: 1
 bar: A string!
 baz: true
@@ -37,9 +36,9 @@ describe('highlightYAML', () => {
   test('highlights block operator', () => expect(highlighted.match(/<em>|-<rst>/)).toBeTruthy())
 
   test.each([
-    [ 'integers', '1' ],
-    [ 'boolean', 'true', ],
-    [ 'object-embedded boolean', 'false' ],
-    [ 'list-embedded float', '1.5' ]
+    ['integers', '1'],
+    ['boolean', 'true'],
+    ['object-embedded boolean', 'false'],
+    ['list-embedded float', '1.5']
   ])('highlights %s (%s)', (desc, value) => expect(highlighted.match(new RegExp(`<code>${value}<rst>`))).toBeTruthy())
 })
