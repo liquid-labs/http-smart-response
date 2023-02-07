@@ -13,7 +13,7 @@ const dataFormats = ['application/json', 'application/yaml', 'application/x-yaml
 
 const nonDataFormats = ['text/terminal', 'text/plain']
 
-const respondHTTP = ({ data, msg, req, res, sendUndefined = false }) => {
+const httpSmartResponse = ({ data, msg, req, res, sendUndefined = false }) => {
   const format = req.accepts(allFormats)
 
   if (format === false) {
@@ -43,4 +43,4 @@ const respondHTTP = ({ data, msg, req, res, sendUndefined = false }) => {
   }
 }
 
-export { allFormats, dataFormats, nonDataFormats, respondHTTP }
+export { allFormats, dataFormats, nonDataFormats, httpSmartResponse }

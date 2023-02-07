@@ -1,6 +1,6 @@
 /* global describe expect test */
 
-import { nonDataFormats, respondHTTP } from '../respond-http'
+import { nonDataFormats, httpSmartResponse } from '../respond-http'
 
 const ResMock = class {
   #done
@@ -44,11 +44,11 @@ const ResMock = class {
   _getStatus() { return this.#status }
 }
 
-describe('respondHTTP', () => {
+describe('httpSmartResponse', () => {
   test.each(nonDataFormats)("sends message for '%s' responses", (format) => {
     const req = { accepts : () => format }
     const res = new ResMock()
-    respondHTTP({ msg : 'Hi!', data : { foo : 'bar' }, req, res })
+    httpSmartResponse({ msg : 'Hi!', data : { foo : 'bar' }, req, res })
     expect(res._getType()).toBe(format)
     expect(res.log.match(/^Hi!/)).toBeTruthy()
   })
@@ -56,7 +56,7 @@ describe('respondHTTP', () => {
   test('Results in a 406 response if no format is supported.', () => {
     const req = { accepts : () => false }
     const res = new ResMock()
-    respondHTTP({ msg : 'Hi!', data : { foo : 'bar' }, req, res })
+    httpSmartResponse({ msg : 'Hi!', data : { foo : 'bar' }, req, res })
     expect(res._getStatus()).toBe(406)
   })
 
@@ -64,7 +64,7 @@ describe('respondHTTP', () => {
     const req = { accepts : () => 'application/json' }
     const res = new ResMock()
     const data = { foo : 'bar' }
-    respondHTTP({ msg : 'Hi!', data, req, res })
+    httpSmartResponse({ msg : 'Hi!', data, req, res })
     expect(res._getType()).toBe('application/json')
     expect(res.log.match(/^Hi!/)).toBe(null)
     expect(JSON.parse(res.log)).toEqual(data)
