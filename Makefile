@@ -26,12 +26,18 @@ $(HSR): package.json $(HSR_FILES)
 $(HSR_TEST_BUILT_FILES) &: $(HSR_ALL_FILES)
 	JS_SRC=$(HSR_SRC) $(CATALYST_SCRIPTS) pretest
 
-test: $(HSR_TEST_BUILT_FILES)
+.test-marker: $(HSR_TEST_BUILT_FILES)
 	JS_SRC=test-staging $(CATALYST_SCRIPTS) test
+	touch $@
+
+test: .test-marker
 
 # lint rules
-lint:
+.lint-marker: $(HSR_ALL_FILES)
 	JS_LINT_TARGET=$(HSR_SRC) $(CATALYST_SCRIPTS) lint
+	touch $@
+
+lint: .lint-marker
 
 lint-fix:
 	JS_LINT_TARGET=$(HSR_SRC) $(CATALYST_SCRIPTS) lint-fix
