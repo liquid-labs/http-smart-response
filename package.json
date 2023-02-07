@@ -8,8 +8,8 @@
     "lint": "make lint",
     "lint:fix": "make lint-fix",
     "test": "make test",
-    "preversion": "npm test && make lint",
-    "postversion": "git push upstream v${npm_package_version}"
+    "preversion": "npm run qa",
+    "qa": "make qa"
   },
   "keywords": [],
   "author": "Zane Rockenbaugh <zane@liquid-labs.com>",

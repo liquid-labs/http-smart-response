@@ -1,5 +1,5 @@
 .DELETE_ON_ERROR:
-.PHONY: all build test lint lint-fix
+.PHONY: all build lint lint-fix qa test
 
 default: build
 
@@ -35,3 +35,5 @@ lint:
 
 lint-fix:
 	JS_LINT_TARGET=$(HSR_SRC) $(CATALYST_SCRIPTS) lint-fix
+
+qa: test lint
