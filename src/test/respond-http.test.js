@@ -1,6 +1,6 @@
 /* global describe expect test */
 
-import { nonDataFormats, httpSmartResponse } from '../respond-http'
+import { nonDataFormats, httpSmartResponse } from '../http-smart-response'
 
 const ResMock = class {
   #done
