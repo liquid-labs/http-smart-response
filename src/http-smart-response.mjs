@@ -41,6 +41,7 @@ const httpSmartResponse = ({ data, msg, req, res, sendUndefined = false }) => {
       res.send(yamlString)
     }
   }
+  else { res.end() }
 }
 
 export { allFormats, dataFormats, nonDataFormats, httpSmartResponse }
