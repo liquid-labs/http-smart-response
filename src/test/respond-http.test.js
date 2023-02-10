@@ -13,6 +13,11 @@ const ResMock = class {
     this.#log = []
   }
 
+  end() {
+    this.#done = true
+    return this
+  }
+
   write(string) {
     this._checkDone()
     this.#log.push(string)

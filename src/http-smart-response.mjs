@@ -30,7 +30,7 @@ const httpSmartResponse = ({ data, msg, req, res, sendUndefined = false }) => {
   if (data !== undefined || sendUndefined === true) {
     if (format === 'application/json') {
       const json = JSON.stringify(data, null, '  ')
-      res.send(json)
+      res.write(json)
     }
     else {
       let yamlString = yaml.dump(data)
@@ -38,10 +38,10 @@ const httpSmartResponse = ({ data, msg, req, res, sendUndefined = false }) => {
         yamlString = highlightYAML(yamlString)
       }
 
-      res.send(yamlString)
+      res.write(yamlString)
     }
   }
-  else { res.end() }
+  res.end()
 }
 
 export { allFormats, dataFormats, nonDataFormats, httpSmartResponse }
