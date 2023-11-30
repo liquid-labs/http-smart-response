@@ -1,6 +1,6 @@
 {
   "name": "@liquid-labs/http-smart-response",
-  "version": "1.0.0-alpha.3",
+  "version": "1.0.0-alpha.4",
   "description": "",
   "main": "dist/http-smart-response.js",
   "scripts": {
