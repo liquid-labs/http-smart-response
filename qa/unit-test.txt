@@ -1,0 +1,16 @@
+Test git rev: ec6f7ac55a5b921f30b88968fd6bf437af3c59b7
+PASS test/respond-http.test.js
+PASS test/highlight-yaml.test.js
+-------------------------|---------|----------|---------|---------|-------------------
+File                     | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-------------------------|---------|----------|---------|---------|-------------------
+All files                |    85.1 |    78.94 |      50 |    85.1 |                   
+ highlight-yaml.js       |     100 |      100 |     100 |     100 |                   
+ http-smart-response.mjs |      75 |    71.42 |   33.33 |      75 | 33-34,49-54       
+-------------------------|---------|----------|---------|---------|-------------------
+
+Test Suites: 2 passed, 2 total
+Tests:       11 passed, 11 total
+Snapshots:   0 total
+Time:        0.29 s
+Ran all test suites.
