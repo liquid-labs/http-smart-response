@@ -19,7 +19,7 @@ const nonDataFormats = ['text/terminal', 'text/plain']
 
 /**
  * Parameters:
- * 
+ *
  * - `data`: _(object, optional)_ any data associated with the response.
  * - `msg`: _(string, optional)_ the message to send for non-data / human directed output.
  * - `req`: _(object, required)_ the request object.
@@ -27,11 +27,11 @@ const nonDataFormats = ['text/terminal', 'text/plain']
  * - `sendData`: _(boolean)_ by default, data is not send with a human-directed message (i.e., when the request 'Accept' header is a non-data format). If true, then a YAML representaiton of the data is printed before the message.
  * - 'sendUndefined`` : _(boolean)_ by default, an undefined data directed response sends nothing. If true, then `undefined` is sent.
  */
-const httpSmartResponse = ({ 
-  data, 
-  msg, 
-  req = throw new Error("Missing required 'req' parameter."), 
-  res = throw new Error("Missing required 'res' parameter."), 
+const httpSmartResponse = ({
+  data,
+  msg,
+  req = throw new Error("Missing required 'req' parameter."),
+  res = throw new Error("Missing required 'res' parameter."),
   sendData = false,
   sendUndefined = false
 }) => {
@@ -47,10 +47,7 @@ const httpSmartResponse = ({
   if (msg && nonDataFormats.includes(format)) {
     if (sendData === true) {
       const yamlString = yaml.dump(data)
-      // const highlightedYAML = highlight(yamlString, {language: 'yaml'}).value
-      const hlyaml = highlight(yamlString, {language: 'yaml'}) // DEBUG
-      console.log('hlyaml:', hlyaml) // DEBUG
-      const highlightedYAML = hlyaml.value // DEBUG //
+      const highlightedYAML = hljs.highlight(yamlString, { language : 'yaml' }).value
       res.write(highlightedYAML + '\n\n')
     }
 

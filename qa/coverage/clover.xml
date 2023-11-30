@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1701372250212" clover="3.2.0">
-  <project timestamp="1701372250212" name="All files">
+<coverage generated="1701373020919" clover="3.2.0">
+  <project timestamp="1701373020919" name="All files">
     <metrics statements="47" coveredstatements="40" conditionals="19" coveredconditionals="15" methods="4" coveredmethods="2" elements="70" coveredelements="57" complexity="0" loc="47" ncloc="47" packages="1" files="2" classes="2"/>
     <file name="highlight-yaml.js" path="/Users/zane/playground/liquid-labs/http-smart-response/src/highlight-yaml.js">
       <metrics statements="19" coveredstatements="19" conditionals="5" coveredconditionals="5" methods="1" coveredmethods="1"/>

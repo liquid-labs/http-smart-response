@@ -1,0 +1,20 @@
+Test git rev: 845c0874f2ac5c1339b3768e2235184c306efce8
+
+/Users/zane/playground/liquid-labs/http-smart-response/src/http-smart-response.mjs
+  22:3   error  Trailing spaces not allowed         no-trailing-spaces
+  30:29  error  Trailing spaces not allowed         no-trailing-spaces
+  31:8   error  Trailing spaces not allowed         no-trailing-spaces
+  32:7   error  Trailing spaces not allowed         no-trailing-spaces
+  33:62  error  Trailing spaces not allowed         no-trailing-spaces
+  34:62  error  Trailing spaces not allowed         no-trailing-spaces
+  51:22  error  'highlight' is not defined          no-undef
+  51:44  error  A space is required after '{'       object-curly-spacing
+  51:45  error  Missing space after key 'language'  key-spacing
+  51:61  error  A space is required before '}'      object-curly-spacing
+
+/Users/zane/playground/liquid-labs/http-smart-response/src/index.js
+  1:15  error  Unexpected use of file extension "mjs" for "./http-smart-response.mjs"  import/extensions
+
+✖ 11 problems (11 errors, 0 warnings)
+  9 errors and 0 warnings potentially fixable with the `--fix` option.
+

@@ -1,4 +1,4 @@
-Test git rev: ec6f7ac55a5b921f30b88968fd6bf437af3c59b7
+Test git rev: 845c0874f2ac5c1339b3768e2235184c306efce8
 PASS test/respond-http.test.js
 PASS test/highlight-yaml.test.js
 -------------------------|---------|----------|---------|---------|-------------------
@@ -12,5 +12,5 @@ All files                |    85.1 |    78.94 |      50 |    85.1 |
 Test Suites: 2 passed, 2 total
 Tests:       11 passed, 11 total
 Snapshots:   0 total
-Time:        0.29 s
+Time:        0.156 s, estimated 1 s
 Ran all test suites.
