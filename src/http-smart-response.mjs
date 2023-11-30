@@ -1,5 +1,9 @@
-import { highlightYAML } from './highlight-yaml'
+import hljs from 'highlight.js/lib/core'
+import yamlLanguage from 'highlight.js/lib/languages/yaml'
+
 import yaml from 'js-yaml'
+
+hljs.registerLanguage('yaml', yamlLanguage)
 
 const allFormats = [
   'application/json',
@@ -13,7 +17,24 @@ const dataFormats = ['application/json', 'application/yaml', 'application/x-yaml
 
 const nonDataFormats = ['text/terminal', 'text/plain']
 
-const httpSmartResponse = ({ data, msg, req, res, sendUndefined = false }) => {
+/**
+ * Parameters:
+ *
+ * - `data`: _(object, optional)_ any data associated with the response.
+ * - `msg`: _(string, optional)_ the message to send for non-data / human directed output.
+ * - `req`: _(object, required)_ the request object.
+ * - `res`: _(object, required)_ the results object.
+ * - `sendData`: _(boolean)_ by default, data is not send with a human-directed message (i.e., when the request 'Accept' header is a non-data format). If true, then a YAML representaiton of the data is printed before the message.
+ * - 'sendUndefined`` : _(boolean)_ by default, an undefined data directed response sends nothing. If true, then `undefined` is sent.
+ */
+const httpSmartResponse = ({
+  data,
+  msg,
+  req = throw new Error("Missing required 'req' parameter."),
+  res = throw new Error("Missing required 'res' parameter."),
+  sendData = false,
+  sendUndefined = false
+}) => {
   const format = req.accepts(allFormats)
 
   if (format === false) {
@@ -24,22 +45,20 @@ const httpSmartResponse = ({ data, msg, req, res, sendUndefined = false }) => {
   res.type(format)
 
   if (msg && nonDataFormats.includes(format)) {
-    res.write(msg + '\n\n')
+    if (sendData === true) {
+      const yamlString = yaml.dump(data)
+      const highlightedYAML = hljs.highlight(yamlString, { language : 'yaml' }).value
+      res.write(highlightedYAML + '\n\n')
+    }
+
+    res.write(msg)
   }
 
   if (data !== undefined || sendUndefined === true) {
-    if (format === 'application/json') {
-      const json = JSON.stringify(data, null, '  ')
-      res.write(json)
-    }
-    else {
-      let yamlString = yaml.dump(data)
-      if (format === 'text/terminal') {
-        yamlString = highlightYAML(yamlString)
-      }
-
-      res.write(yamlString)
-    }
+    const dataString = format === 'application/json'
+      ? JSON.stringify(data, null, '  ')
+      : yaml.dump(data)
+    res.write(dataString)
   }
   res.end()
 }

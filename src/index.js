@@ -1,1 +1,1 @@
-export * from './http-smart-response.mjs'
+export * from './http-smart-response'
