@@ -8,7 +8,8 @@
     "lint": "make lint",
     "lint:fix": "make lint-fix",
     "test": "make test",
-    "preversion": "npm run qa",
+    "prepack": "make build",
+    "preversion": "make qa",
     "qa": "make qa"
   },
   "engines": {
