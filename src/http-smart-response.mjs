@@ -44,22 +44,26 @@ const httpSmartResponse = ({
   // else good to go
   res.type(format)
 
-  if (msg && nonDataFormats.includes(format)) {
+  const userDirectedOutput = nonDataFormats.includes(format)
+
+  if ((data !== undefined || sendUndefined === true) && userDirectedOutput === false) {
+    const dataString = format === 'application/json'
+      ? JSON.stringify(data, null, '  ')
+      : yaml.dump(data)
+    res.write(dataString)
+  }
+  else if (userDirectedOutput === true) {
     if (sendData === true) {
       const yamlString = yaml.dump(data)
       const highlightedYAML = hljs.highlight(yamlString, { language : 'yaml' }).value
       res.write(highlightedYAML + '\n\n')
     }
 
-    res.write(msg)
+    if (msg !== undefined) {
+      res.write(msg)
+    }
   }
 
-  if (data !== undefined || sendUndefined === true) {
-    const dataString = format === 'application/json'
-      ? JSON.stringify(data, null, '  ')
-      : yaml.dump(data)
-    res.write(dataString)
-  }
   res.end()
 }
 
